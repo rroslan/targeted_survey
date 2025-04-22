@@ -49,26 +49,11 @@ defmodule TargetedSurveyWeb.UserLive.Registration do
     {:ok, assign_form(socket, changeset), temporary_assigns: [form: nil]}
   end
 
-  def handle_event("save", %{"user" => user_params}, socket) do
-    case Accounts.register_user(user_params) do
-      {:ok, user} ->
-        {:ok, _} =
-          Accounts.deliver_login_instructions(
-            user,
-            &url(~p"/users/log-in/#{&1}")
-          )
-
-        {:noreply,
-         socket
-         |> put_flash(
-           :info,
-           "An email was sent to #{user.email}, please access it to confirm your account."
-         )
-         |> push_navigate(to: ~p"/users/log-in")}
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        {:noreply, assign_form(socket, changeset)}
-    end
+  def handle_event("save", _params, socket) do
+    {:noreply,
+     socket
+     |> put_flash(:error, "Registration Temporarily Disabled")
+     |> push_navigate(to: ~p"/users/log-in")}
   end
 
   def handle_event("validate", %{"user" => user_params}, socket) do
