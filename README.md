@@ -1,5 +1,14 @@
 # TargetedSurvey
 
+## Authentication Updates
+
+- Removed password-based login completely
+- Email magic link is now the only login method
+- Added admin role support via `is_admin` field
+- Successful CI/CD deployment verified
+
+All authentication now works exclusively through email verification links sent to registered addresses.
+
 CI/CD deployment testing via GitHub Actions
 
 To start your Phoenix server:
