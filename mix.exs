@@ -10,7 +10,21 @@ defmodule TargetedSurvey.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      listeners: [Phoenix.CodeReloader]
+      listeners: [Phoenix.CodeReloader],
+      test_coverage: [
+        tools: [
+          ex_unit: [
+            mailers: [
+              adapter: Swoosh.Adapters.Local,
+              api_client: Swoosh.ApiClient.Mock
+            ],
+            mailbox: [
+              serve: true,
+              preview_port: 4001
+            ]
+          ]
+        ]
+      ]
     ]
   end
 
