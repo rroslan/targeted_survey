@@ -7,6 +7,19 @@
 # General application configuration
 import Config
 
+config :targeted_survey, :scopes,
+  user: [
+    default: true,
+    module: TargetedSurvey.Accounts.Scope,
+    assign_key: :current_scope,
+    access_path: [:user, :id],
+    schema_key: :user_id,
+    schema_type: :id,
+    schema_table: :users,
+    test_data_fixture: TargetedSurvey.AccountsFixtures,
+    test_login_helper: :register_and_log_in_user
+  ]
+
 # config/config.exs
 config :sentry,
   dsn: "https://public_key@app.getsentry.com/1",
@@ -36,7 +49,8 @@ config :targeted_survey, TargetedSurveyWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :targeted_survey, TargetedSurvey.Mailer, adapter: Swoosh.Adapters.Local
+#config :targeted_survey, TargetedSurvey.Mailer, adapter: Swoosh.Adapters.Local
+
 
 # Configure esbuild (the version is required)
 config :esbuild,

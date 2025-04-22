@@ -26,6 +26,8 @@ config :targeted_survey, :logger, [
 # Configures Swoosh API Client
 config :swoosh, api_client: Swoosh.ApiClient.Req
 
+
+
 # Disable Swoosh Local Memory Storage
 config :swoosh, local: false
 
