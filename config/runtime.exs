@@ -5,7 +5,11 @@ import Config
 # and secrets from environment variables or elsewhere. Do not define
 # any compile-time configuration in here, as it won't be applied.
 # The block below contains prod specific runtime configuration.
+config :targeted_survey, TargetedSurvey.Mailer,
+  adapter: Resend.Swoosh.Adapter,
+  api_key: System.get_env("RESEND_API_KEY")
 
+config :swoosh, :api_client, Swoosh.ApiClient.Finch
 # ## Using releases
 #
 # If you use `mix release`, you need to explicitly enable the server
