@@ -1,5 +1,7 @@
 # TargetedSurvey
 
+CI/CD deployment testing via GitHub Actions
+
 To start your Phoenix server:
 
 * Run `mix setup` to install and setup dependencies
