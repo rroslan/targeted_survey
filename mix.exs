@@ -11,19 +11,13 @@ defmodule TargetedSurvey.MixProject do
       aliases: aliases(),
       deps: deps(),
       listeners: [Phoenix.CodeReloader],
-      test_coverage: [
-        tools: [
-          ex_unit: [
-            mailers: [
-              adapter: Swoosh.Adapters.Local,
-              api_client: Swoosh.ApiClient.Mock
-            ],
-            mailbox: [
-              serve: true,
-              preview_port: 4001
-            ]
-          ]
-        ]
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+      coveralls: :test,
+      "coveralls.detail": :test,
+      "coveralls.post": :test,
+      "coveralls.html": :test,
+      "coveralls.cobertura": :test,
       ]
     ]
   end
@@ -76,7 +70,12 @@ defmodule TargetedSurvey.MixProject do
       {:bandit, "~> 1.5"},
       {:resend, "~> 0.4.4"},
       {:sentry, "~> 10.8"},
-      {:hackney, "~> 1.20"}
+      {:hackney, "~> 1.20"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.18", only: :test},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 1.0", only: [:dev, :test]}
 
     ]
   end

@@ -9,7 +9,7 @@ defmodule TargetedSurvey.AccountsFixtures do
   alias TargetedSurvey.Accounts
   alias TargetedSurvey.Accounts.Scope
 
-  def unique_user_email, do: "user#{System.unique_integer()}@example.com"
+  def unique_user_email, do: "user#{System.unique_integer()}@applikasi.tech"
   def valid_user_password, do: "hello world!"
 
   def valid_user_attributes(attrs \\ %{}) do

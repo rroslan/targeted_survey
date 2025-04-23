@@ -5,11 +5,8 @@ import Config
 # and secrets from environment variables or elsewhere. Do not define
 # any compile-time configuration in here, as it won't be applied.
 # The block below contains prod specific runtime configuration.
-config :targeted_survey, TargetedSurvey.Mailer,
-  adapter: Resend.Swoosh.Adapter,
-  api_key: System.get_env("RESEND_API_KEY")
 
-config :swoosh, :api_client, Swoosh.ApiClient.Finch
+
 # ## Using releases
 #
 # If you use `mix release`, you need to explicitly enable the server
@@ -40,6 +37,12 @@ if config_env() == :prod do
     # For machines with several cores, consider starting multiple pools of `pool_size`
     # pool_count: 4,
     socket_options: maybe_ipv6
+
+    config :targeted_survey, TargetedSurvey.Mailer,
+    adapter: Resend.Swoosh.Adapter,
+    api_key: System.get_env("RESEND_API_KEY")
+
+  config :swoosh, :api_client, Swoosh.ApiClient.Finch
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you

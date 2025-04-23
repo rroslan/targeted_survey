@@ -83,10 +83,6 @@ config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-config :targeted_survey, TargetedSurvey.Mailer,
-  adapter: Resend.Swoosh.Adapter,
-  api_key: System.get_env("RESEND_API_KEY")
 
-config :swoosh, :api_client, Swoosh.ApiClient.Finch
 
 import_config "#{config_env()}.exs"
